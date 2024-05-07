@@ -222,7 +222,8 @@ class Handbrake extends events.EventEmitter {
       optionEqualsValueExclusions: ['preset-import-file', 'preset-import-gui', 'subtitle-burned']
     });
     this._emitStart();
-    const handle = this.cp.spawn(this.HandbrakeCLIPath, spawnArgs);
+    const handle = this.cp.spawn(this.HandbrakeCLIPath.replace('app.asar', 'app.asar.unpacked'), spawnArgs)
+    //const handle = this.cp.spawn(this.HandbrakeCLIPath, spawnArgs);
     handle.stdout.setEncoding('utf-8');
 
     let buffer = '';
